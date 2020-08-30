@@ -79,7 +79,9 @@ class RecordingsViewController: UIViewController {
         }
         do {
             let session = AVAudioSession.sharedInstance()
-            try session.setCategory(.playAndRecord, mode: Settings.shared.currentMode)
+            try session.setCategory(.playAndRecord,
+                                    mode: Settings.shared.currentMode,
+                                    options: Settings.shared.desiredOptions)
             try session.setActive(true)
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -171,6 +173,7 @@ extension RecordingsViewController: UITableViewDelegate, UITableViewDataSource {
         let recording = self.recordings[indexPath.row]
         cell?.textLabel?.text = recording.name
         cell?.detailTextLabel?.text = recording.path.absoluteString
+        cell?.accessoryType = .detailButton
         return cell!
         
     }
@@ -183,9 +186,16 @@ extension RecordingsViewController: UITableViewDelegate, UITableViewDataSource {
                 try filemanager.removeItem(at: recording.path)
                 self.recordings.remove(at: indexPath.row)
                 self.tableView.reloadData()
-            }catch(let err){
+            } catch(let err){
                 print("Error while deleteing \(err)")
             }
         }
+    }
+
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let recording = self.recordings[indexPath.row]
+        let path = recording.path
+        let controller = UIActivityViewController(activityItems: [path], applicationActivities: [])
+        self.present(controller, animated: true, completion: nil)
     }
 }

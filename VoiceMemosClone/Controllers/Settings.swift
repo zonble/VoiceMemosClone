@@ -14,4 +14,8 @@ class Settings {
             UserDefaults.standard.set(index, forKey: "current_mode")
         }
     }
+
+    var desiredOptions: AVAudioSession.CategoryOptions {
+        return [.mixWithOthers, .allowBluetooth, .allowBluetoothA2DP, .defaultToSpeaker]
+    }
 }

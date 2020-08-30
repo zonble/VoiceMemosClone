@@ -165,7 +165,9 @@ class RecorderViewController: UIViewController {
         
         do {
             let session = AVAudioSession.sharedInstance()
-            try session.setCategory(.playAndRecord, mode: Settings.shared.currentMode)
+            try session.setCategory(.playAndRecord,
+                                    mode: Settings.shared.currentMode,
+                                    options: Settings.shared.desiredOptions)
             try session.setActive(true)
         } catch let error as NSError {
             print(error.localizedDescription)
