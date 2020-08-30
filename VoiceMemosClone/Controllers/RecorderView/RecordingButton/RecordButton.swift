@@ -99,7 +99,7 @@ class RecordButton: UIButton {
             return super.isHighlighted
         }
         set {
-            super.isHighlighted = isHighlighted
+            super.isHighlighted = newValue
             setNeedsDisplay()
         }
     }
