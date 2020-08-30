@@ -41,6 +41,13 @@ class MainViewController: UIViewController {
 
 }
 
+extension MainViewController {
+    @IBAction func promptSettings() {
+        let controller = SettingsViewController(style: .grouped)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
 extension MainViewController: RecorderViewControllerDelegate {
     func didStartRecording() {
         if let recordings = self.recordingsViewController {

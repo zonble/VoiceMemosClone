@@ -21,6 +21,8 @@
 		9A508CC321E9872900F16470 /* StartRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9A508CC121E9872900F16470 /* StartRecording.aiff */; };
 		9A508CC421E9872900F16470 /* StopRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9A508CC221E9872900F16470 /* StopRecording.aiff */; };
 		9A508CC621E9961200F16470 /* AudioVisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A508CC521E9961200F16470 /* AudioVisualizerView.swift */; };
+		D4BB50A524FBFB1E00F5D5C6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB50A424FBFB1E00F5D5C6 /* SettingsViewController.swift */; };
+		D4BB50A724FBFEED00F5D5C6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB50A624FBFEED00F5D5C6 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		9A508CC121E9872900F16470 /* StartRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StartRecording.aiff; sourceTree = "<group>"; };
 		9A508CC221E9872900F16470 /* StopRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StopRecording.aiff; sourceTree = "<group>"; };
 		9A508CC521E9961200F16470 /* AudioVisualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioVisualizerView.swift; sourceTree = "<group>"; };
+		D4BB50A424FBFB1E00F5D5C6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D4BB50A624FBFEED00F5D5C6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			children = (
 				9A3786AA21EAAF7E00CC5EA1 /* RecorderView */,
 				9A508CB421E97CA200F16470 /* RecordingsViewController.swift */,
+				D4BB50A424FBFB1E00F5D5C6 /* SettingsViewController.swift */,
+				D4BB50A624FBFEED00F5D5C6 /* Settings.swift */,
 				9A508CB621E97CCD00F16470 /* MainViewController.swift */,
 			);
 			path = Controllers;
@@ -304,10 +310,12 @@
 				9A508CB021E971D500F16470 /* RecorderViewController.swift in Sources */,
 				9A508C9921E964B500F16470 /* AppDelegate.swift in Sources */,
 				9A508CBE21E983B400F16470 /* RecordButton.swift in Sources */,
+				D4BB50A724FBFEED00F5D5C6 /* Settings.swift in Sources */,
 				9A508CB321E9763300F16470 /* Extensions.swift in Sources */,
 				9A508CB721E97CCD00F16470 /* MainViewController.swift in Sources */,
 				9A508CBD21E983B400F16470 /* RecordButtonKit.swift in Sources */,
 				9A508CC621E9961200F16470 /* AudioVisualizerView.swift in Sources */,
+				D4BB50A524FBFB1E00F5D5C6 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
