@@ -72,14 +72,14 @@ class RecordButton: UIButton {
     }
     
     override func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
-        if playSounds {
-            if isRecording {
-                stopPlayer?.play()
-            }
-            else {
-                startPlayer?.play()
-            }
-        }
+//        if playSounds {
+//            if isRecording {
+//                stopPlayer?.play()
+//            }
+//            else {
+//                startPlayer?.play()
+//            }
+//        }
         isRecording = !isRecording
         super.sendAction(action, to: target, for: event)
     }

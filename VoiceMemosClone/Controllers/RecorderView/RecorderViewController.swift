@@ -30,8 +30,12 @@ class RecorderViewController: UIViewController {
     var recordButton = RecordButton()
     var timeLabel = UILabel()
     var audioView = AudioVisualizerView()
-    let settings = [AVFormatIDKey: kAudioFormatLinearPCM, AVLinearPCMBitDepthKey: 16, AVLinearPCMIsFloatKey: true, AVSampleRateKey: Float64(44100), AVNumberOfChannelsKey: 1] as [String : Any]
-    let audioEngine = AVAudioEngine()
+    var settings: [String:Any]  {
+        let format = self.audioEngine.inputNode.outputFormat(forBus: 0)
+        let sampleRate = format.sampleRate
+        return [AVFormatIDKey: kAudioFormatLinearPCM, AVLinearPCMBitDepthKey: 16, AVLinearPCMIsFloatKey: true, AVSampleRateKey: sampleRate, AVNumberOfChannelsKey: 1] as [String : Any]
+    }
+    var audioEngine = AVAudioEngine()
     private var renderTs: Double = 0
     private var recordingTs: Double = 0
     private var silenceTs: Double = 0
@@ -156,6 +160,7 @@ class RecorderViewController: UIViewController {
 
     // MARK:- Recording
     private func startRecording() {
+        audioEngine = AVAudioEngine()
         if let d = self.delegate {
             d.didStartRecording()
         }
@@ -168,21 +173,21 @@ class RecorderViewController: UIViewController {
             try session.setCategory(.playAndRecord,
                                     mode: Settings.shared.currentMode,
                                     options: Settings.shared.desiredOptions)
-            try session.setActive(true)
+            try session.setActive(true, options: .notifyOthersOnDeactivation)
         } catch let error as NSError {
             print(error.localizedDescription)
             return
         }
         
         let inputNode = self.audioEngine.inputNode
-        guard let format = self.format() else {
-            return
-        }
+//        guard let format = self.format() else {
+//            return
+//        }
         
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: nil) { (buffer, time) in
             let level: Float = -50
-            let length: UInt32 = 1024
-            buffer.frameLength = length
+            let length: UInt32 = buffer.frameLength
+//            buffer.frameLength = length
             let channels = UnsafeBufferPointer(start: buffer.floatChannelData, count: Int(buffer.format.channelCount))
             var value: Float = 0
             vDSP_meamgv(channels[0], 1, &value, vDSP_Length(length))

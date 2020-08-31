@@ -34,16 +34,15 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="63S-hJ-wSb" firstAttribute="leading" secondItem="h11-IZ-P31" secondAttribute="leading" id="2vb-qO-KmC"/>
-                                    <constraint firstItem="p0o-yj-w7e" firstAttribute="leading" secondItem="h11-IZ-P31" secondAttribute="leading" id="MOl-yD-Q3p"/>
                                     <constraint firstItem="63S-hJ-wSb" firstAttribute="height" secondItem="h11-IZ-P31" secondAttribute="height" multiplier="1:4" id="QUp-BW-pPq"/>
                                     <constraint firstItem="p0o-yj-w7e" firstAttribute="height" secondItem="h11-IZ-P31" secondAttribute="height" multiplier="3:4" id="QpY-hL-Ynz"/>
                                     <constraint firstAttribute="trailing" secondItem="63S-hJ-wSb" secondAttribute="trailing" id="YQw-8J-vJF"/>
+                                    <constraint firstItem="p0o-yj-w7e" firstAttribute="leading" secondItem="h11-IZ-P31" secondAttribute="leading" id="ZPx-kH-cmu"/>
                                     <constraint firstAttribute="trailing" secondItem="p0o-yj-w7e" secondAttribute="trailing" id="qvy-dL-Dyg"/>
                                     <constraint firstAttribute="bottom" secondItem="63S-hJ-wSb" secondAttribute="bottom" id="tu8-IE-hdc"/>
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1H6-wh-wTI" firstAttribute="trailing" secondItem="h11-IZ-P31" secondAttribute="trailing" id="P3W-1n-z1K"/>
                             <constraint firstItem="h11-IZ-P31" firstAttribute="top" secondItem="1H6-wh-wTI" secondAttribute="top" constant="8" id="WQi-8Z-jAF"/>

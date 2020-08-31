@@ -62,7 +62,9 @@ class RecordingsViewController: UIViewController {
         let documentsDirectory = filemanager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
             let paths = try filemanager.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil, options: [])
-            for path in paths {
+            for path in paths.sorted(by: { a, b  in
+                return a.absoluteString > b.absoluteString
+            }) {
                 let recording = Recording(name: path.lastPathComponent, path: path)
                 self.recordings.append(recording)
             }
@@ -82,7 +84,7 @@ class RecordingsViewController: UIViewController {
             try session.setCategory(.playAndRecord,
                                     mode: Settings.shared.currentMode,
                                     options: Settings.shared.desiredOptions)
-            try session.setActive(true)
+            try session.setActive(true, options: .notifyOthersOnDeactivation)
         } catch let error as NSError {
             print(error.localizedDescription)
             return
@@ -145,7 +147,28 @@ extension RecordingsViewController: AVAudioPlayerDelegate {
 }
 
 extension RecordingsViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.numberOfLines = 0
+        let route = AVAudioSession.sharedInstance().currentRoute
+        let input = "[" + route.inputs.map { $0.portName }.joined(separator: ", ") + "]"
+        let output = "[" + route.outputs.map { $0.portName }.joined(separator: ", ") + "]"
+        let style = NSMutableParagraphStyle()
+        style.headIndent = 10.0
+        style.firstLineHeadIndent = 10.0
+//        style.tailIndent = 10.0
+        label.attributedText =
+            NSAttributedString(string: "Input: \(input)\nOutput:\(output)",
+                attributes: [.paragraphStyle: style])
+        return label
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isPlaying() {
             self.stopPlay()
@@ -156,12 +179,12 @@ extension RecordingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let result = self.recordings.count
-        if result > 0 {
-            self.tableView.isHidden = false
-        }
-        else {
-            self.tableView.isHidden = true
-        }
+//        if result > 0 {
+//            self.tableView.isHidden = false
+//        }
+//        else {
+//            self.tableView.isHidden = true
+//        }
         return result
     }
     
